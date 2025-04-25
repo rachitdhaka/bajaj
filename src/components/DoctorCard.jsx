@@ -16,6 +16,10 @@ const DoctorCard = ({ doctor }) => {
       
       return "No specialties listed";
     };
+
+    const handleBookAppointment = () => {
+        alert(`Appointment request submitted for Dr. ${doctor.name}. You will receive a confirmation shortly.`);
+      };
   
     return (
       <div data-testid="doctor-card" className="bg-white rounded-lg shadow p-4 flex flex-col md:flex-row">
@@ -63,7 +67,8 @@ const DoctorCard = ({ doctor }) => {
           </div>
           
           <div className="mt-4">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg"
+            onClick={handleBookAppointment}>
               Book Appointment
             </button>
           </div>
