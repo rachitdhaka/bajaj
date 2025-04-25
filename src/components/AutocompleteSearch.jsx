@@ -90,18 +90,27 @@ const AutocompleteSearch = ({ doctors, onSearch, searchTerm }) => {
         </div>
       </form>
 
-      {showSuggestions && suggestions.length > 0 && (
+      {showSuggestions && inputValue.trim() && (
         <ul className="absolute z-10 w-full bg-white mt-1 border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
-          {suggestions.map((doctor) => (
+          {suggestions.length > 0 ? (
+            suggestions.map((doctor) => (
+              <li 
+                key={doctor.id}
+                data-testid="suggestion-item"
+                className="p-3 hover:bg-gray-100 cursor-pointer"
+                onClick={() => handleSuggestionClick(doctor.name)}
+              >
+                {doctor.name}
+              </li>
+            ))
+          ) : (
             <li 
-              key={doctor.id}
-              data-testid="suggestion-item"
-              className="p-3 hover:bg-gray-100 cursor-pointer"
-              onClick={() => handleSuggestionClick(doctor.name)}
+              className="p-3 text-gray-500 text-center"
+              data-testid="no-results"
             >
-              {doctor.name}
+              No doctors found matching your search
             </li>
-          ))}
+          )}
         </ul>
       )}
     </div>
